@@ -1,0 +1,118 @@
+garden_keys: [graham, stacy, davis, lenoir, fetzer, rams, hardin, sasb, main]
+garden:
+  graham:
+    title: Graham Residence Hall Satellite Bed
+    latitude: 35.913100863929714
+    longitude: -79.04673707422411
+    plants:
+      [rosemary, lavender, chives, cilantro, parsley arugula, strawberries]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Graham.jpg&w=900&h=508&r=1",
+      ]
+  stacy:
+    title: Stacy Residence Hall Satellite Bed
+    latitude: 35.912861900973176
+    longitude: -79.04578178935965
+    plants:
+      [
+        oregano,
+        rosemary,
+        lavender,
+        winter savory sage,
+        dill,
+        cilantro,
+        parsley,
+        fennel,
+        onions,
+        arugula,
+        collards,
+        tat soi,
+      ]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Stacy.jpg&w=900&h=508&r=1",
+      ]
+  davis:
+    title: Davis Library Satellite Beds
+    latitude: 35.91069556165627
+    longitude: -79.04839445679961
+    plants:
+      [
+        stevia,
+        mint,
+        mountain mint,
+        catmint,
+        lemon balm,
+        chamomile,
+        lavender,
+        strawberries,
+      ]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Davis.jpg&w=900&h=508&r=1",
+      ]
+  lenoir:
+    title: Lenoir Dining Hall Satellite Beds
+    latitude: 35.91028957255409
+    longitude: -79.04860633260927
+    plants: [rosemary, basil, cilantro, lettuce, chard, pac choi, kale]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Lenoir.jpg&w=900&h=508&r=1",
+      ]
+  fetzer:
+    title: Fetzer Gym Satellite Bed
+    latitude: 35.90938194616278
+    longitude: -79.04649959477473
+    plants: [onion, kale, fennel, cabbage, collards, vitamin greens]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Fetzer.jpg&w=900&h=508&r=1",
+      ]
+  rams:
+    title: Rams Head Market Satellite Beds
+    latitude: 35.905662375431
+    longitude: -79.04591128800935
+    plants:
+      [
+        strawberries,
+        cabbage,
+        collards,
+        onions,
+        broccoli,
+        cilantro,
+        parsley,
+        dill,
+      ]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Rams_Head.jpg&w=900&h=508&r=1",
+      ]
+  hardin:
+    title: Hardin Residence Hall Satellite Bed
+    latitude: 35.903835384262
+    longitude: -79.04632462496059
+    plants: [oregano, lavender, sage, chives, parsley, cilantro, kale]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Hardin.jpg&w=900&h=508&r=1",
+      ]
+  sasb:
+    title: SASB Plaza Satellite Bed
+    latitude: 35.90415267143973
+    longitude: -79.04521335448332
+    plants: [lavender, lettuce, chard]
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_SASB.jpg&w=900&h=508&r=1",
+      ]
+  main:
+    title: Edible Campus Garden Main Bed
+    latitude: 35.91152277220183
+    longitude: -79.04747453736276
+    plants: []
+    images:
+      [
+        "https://cms.concept3d.com/map/lib/image-cache/i.php?mapId=111&image=111/EG_Main_Bed.jpg&w=900&h=508&r=1",
+      ]
