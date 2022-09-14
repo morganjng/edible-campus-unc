@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:yaml/yaml.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:io';
+import 'dart:convert';
 
 void main() {
   runApp(const HomePage());
+}
+
+Map<String,dynamic> GetData() {
+  // TODO hash checking with webserver and pulling diffs
+  // TODO actually pull (maybe from test server first? at edible_campus_unc/test_server.py)
+  return(jsonDecode(File("edible_campus_data.json").readAsStringSync()));
 }
 
 class NavDrawer extends Drawer {
@@ -128,20 +134,20 @@ class DevState extends State<DevPage> {
   int _page = 0;
   bool bInit = false;
 
-  static List<Widget> gardens = List<Widget>.empty(growable: true);
+  static List<Widget> garden_tiles = List<Widget>.empty(growable: true);
 
-  static List<Widget> plants = List<Widget>.empty(growable: true);
+  static List<Widget> plant_tiles = List<Widget>.empty(growable: true);
 
   static List<Widget> _pages = [
-    ListView(
-      padding: const EdgeInsets.all(8),
-      children: gardens,
-    ),
-    ListView(
-      padding: const EdgeInsets.all(8),
-      children: plants,
-    ),
-    const Center(child: Text("Hey"))
+      ListView(
+        padding: const EdgeInsets.all(8),
+        children: garden_tiles,
+      ),
+      ListView(
+        padding: const EdgeInsets.all(8),
+        children: plant_tiles,
+      ),
+      const Center(child: Text("Hey"))
   ];
 
   void _setPage(int index) {
@@ -152,29 +158,29 @@ class DevState extends State<DevPage> {
 
   @override
   Widget build(BuildContext context) {
-    var dataYaml = loadYaml(File('data.yaml').readAsStringSync());
+    var data = GetData();
     String title;
-    if (gardens.isEmpty) {
-      for (int i = 0; i < dataYaml["garden_keys"].length; i++) {
-        title = dataYaml["garden"][dataYaml["garden_keys"][i].toString()]
+    if (garden_tiles.isEmpty) {
+      for (int i = 0; i < data["garden_keys"].length; i++) {
+        title = data["garden"][data["garden_keys"][i].toString()]
                 ["title"]
             .toString();
-        gardens.add(ListTile(
-            // leading: const Icon(Icons.house),
-            title: Text(title),
-            trailing: const Icon(Icons.more_vert)));
+        garden_tiles.add(
+          ListTile(
+              title: Text(title),
+              trailing: const Icon(Icons.more_vert),
+          ));
       }
     }
-    if (plants.isEmpty) {
-      for (int i = 0; i < dataYaml["plant_keys"].length; i++) {
-        title = dataYaml["plant"][dataYaml["plant_keys"][i].toString()]
+    if (plant_tiles.isEmpty) {
+      for (int i = 0; i < data["plant_keys"].length; i++) {
+        title = data["plant"][data["plant_keys"][i].toString()]
                 ["common"]
             .toString();
-        plants.add(ListTile(
-          // leading: const Icon(Icons.park),
-          title: Text(title),
-          trailing: const Icon(Icons.more_vert),
-        ));
+        plant_tiles.add(ListTile(
+            title: Text(title),
+            trailing: const Icon(Icons.more_vert),
+));
       }
     }
     return Scaffold(
