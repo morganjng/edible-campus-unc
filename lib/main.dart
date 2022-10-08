@@ -257,29 +257,34 @@ class GardenPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var ps = List<Widget>.empty(growable: true);
+    ps.add(ListTile(
+        leading:
+            const Text("Plants", style: TextStyle(fontWeight: FontWeight.bold)),
+        trailing: Text(plants[bed.plants[0]]!.commonName),
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PlantPage(plants[bed.plants[0]]!)));
+        }));
+
+    for (int i = 1; i < bed.plants.length; i++) {
+      ps.add(ListTile(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => PlantPage(plants[bed.plants[i]]!)));
+          },
+          trailing: Text(plants[bed.plants[i]]!.commonName)));
+    }
+
     return Scaffold(
-        body: Row(children: [
-          Column(children: [
-            const Text("Title",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            const Text("Latitude",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            const Text("Longitude",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            const Text("Plants",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          ]),
-          Column(children: [
-            Text(bed.title, textAlign: TextAlign.right),
-            Text(bed.latitude.toString(), textAlign: TextAlign.right),
-            Text(bed.longitude.toString(), textAlign: TextAlign.right),
-            Text(bed.plants.toString(), textAlign: TextAlign.right),
-          ])
-        ]),
+        body: ListView(
+          padding: const EdgeInsets.all(8),
+          children: ps,
+        ),
         appBar: AppBar(title: Text(bed.title)));
   }
 }

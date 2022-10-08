@@ -90,7 +90,7 @@
       "latitude": 35.90938194616278,
       "longitude": -79.04649959477473,
       "plants": [
-        "onion",
+        "onions",
         "kale",
         "fennel",
         "cabbage",
@@ -161,6 +161,7 @@
     "broccoli",
     "catmint",
     "chamomile",
+    "cabbage",
     "chard",
     "chives",
     "cilantro",
@@ -178,6 +179,7 @@
     "pac choi",
     "parsley",
     "rosemary",
+    "sage",
     "stevia",
     "strawberries",
     "tat soi",
@@ -201,6 +203,13 @@
     },
     "broccoli": {
       "common": "Broccoli",
+      "scientific": "sp",
+      "images": [],
+      "recipes": "rp",
+      "description": "dp"
+    },
+    "cabbage": {
+      "common": "Cabbage",
       "scientific": "sp",
       "images": [],
       "recipes": "rp",
@@ -341,6 +350,13 @@
     },
     "stevia": {
       "common": "Stevia",
+      "scientific": "sp",
+      "images": [],
+      "recipes": "rp",
+      "description": "dp"
+    },
+    "sage": {
+      "common": "Sage",
       "scientific": "sp",
       "images": [],
       "recipes": "rp",
