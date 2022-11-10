@@ -1,0 +1,4 @@
+#Fri Oct 14 22:52:29 EDT 2022
+base.0=/home/morgan/git/edible-campus-unc/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
