@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake --regenerate-during-build -S/home/morgan/git/edible-campus-unc/linux -B/home/morgan/git/edible-campus-unc/build/linux/x64/debug
+  command = /usr/bin/cmake --regenerate-during-build -S/home/morgan/git/edible-campus-unc/app/linux -B/home/morgan/git/edible-campus-unc/app/build/linux/x64/debug
   description = Re-running CMake...
   generator = 1
 
