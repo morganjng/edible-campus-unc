@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+ThemeData theme =
+    ThemeData(colorSchemeSeed: const Color(0xFF62C6F2), useMaterial3: true);
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Edible Campus UNC Admin Portal',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme,
       home: const HomePage(),
     );
   }

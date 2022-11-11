@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:convert';
 
+ThemeData theme =
+    ThemeData(colorSchemeSeed: const Color(0xFF62C6F2), useMaterial3: true);
+
 Map<String, dynamic>? _serverData;
 Map<String, Plant> plants = {};
 Map<String, Bed> beds = {};

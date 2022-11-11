@@ -1,0 +1,81 @@
+#+title: Tasks
+
+* App
+** TODO Remove admin mode from NavDrawer
++ Task owner: []
++ Self-explanatory
+** TODO Filling out README.org
++ Task owner: []
++ Documenting usage and maintenance requirements
+** TODO Code commenting
++ Task owner: []
++ Descriptive comments for each function and class
+** TODO ToJson for Bed and Plant classes
++ Task owner: []
++ Should help with serialization, Flutter has its own way of this
+** TODO Aesthetic work
++ Task owner: []
++ This app is ugly right now, make it prettier
+** TODO Bed and Plant classes to their own files
++ Task owner: []
++ Self-explanatory
+** TODO Testing plan
++ Task owner: []
++ Describe how to test this project
+** TODO Testing implementation
++ Task owner: []
++ Implement testing plan
+** TODO Descriptive errors
++ Task owner: []
++ Errors that describe the problem in depth
+* Server
+** TODO Post request for admin side
++ Task owner: []
++ Admin user post requests full json, cache latest and posted json, and set posted to latest
+** TODO Get request for specific dates
++ Task owner: []
++ Return json of specific date's data
+** TODO File logging
++ Task owner: []
++ List all files in data/ folder and provide this data to the user
+** TODO Rollback requests
++ Task owner: []
++ Cache the current status, copy specific rollback requested date to latest
+** TODO Fill out README.org
++ Task owner: []
++ Documenting usage and maintenance requirements
+** TODO Code commenting
++ Task owner: []
++ Descriptive comments for each function and class
+** TODO Testing plan
++ Task owner: []
++ Describe how to test this project
+** TODO Testing implementation
++ Task owner: []
++ Implement testing plan
+** TODO Descriptive errors
++ Task owner: []
++ Errors that describe the problem in depth
+* Portal
+** TODO Fill out README.org
++ Task owner: [Morgan]
++ Documenting usage and maintenance requirements
+** TODO Code commenting
++ Task owner: []
++ Descriptive comments for each function and class
+** TODO Display current data
++ Task owner: [Morgan]
++ Layout full current data in portal
+** TODO Modify current data and save state
++ Task owner: []
++ Self-explanatory
+** TODO Verify data integrity and post
++ Task owner: []
++ Make sure that the data being posted is valid and send it to the server
+*** TODO Authentication
+** TODO Aesthetic work
++ Task owner: []
++ Make it pretty
+** TODO Descriptive errors
++ Task owner: []
++ Errors that describe the problem in depth
