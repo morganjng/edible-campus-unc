@@ -79,24 +79,23 @@ class _PlantsPageState extends State<PlantsPage> {
           trailing: const Icon(Icons.more_vert),
           onTap: () {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => PlantPage(
-                    plant: p, gardens: widget.gardens, isApp: widget.isApp)));
+                builder: (context) =>
+                    PlantPage(plant: p, gardens: widget.gardens)));
           }));
     }
     return Scaffold(
-      appBar: widget.isApp ? AppBar(title: const Text("Plants")) : null,
+      appBar: AppBar(title: const Text("Plants")),
       body: ListView(padding: EdgeInsets.zero, children: plantTiles),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
       ),
-      bottomNavigationBar: widget.isApp
-          ? BottomNavigationBar(items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(icon: Icon(Icons.crib), label: "Gardens"),
-              BottomNavigationBarItem(icon: Icon(Icons.yard), label: "Plants"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.account_circle), label: "Account")
-            ], currentIndex: 0, onTap: null)
-          : null,
+      bottomNavigationBar:
+          BottomNavigationBar(items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(icon: Icon(Icons.crib), label: "Gardens"),
+        BottomNavigationBarItem(icon: Icon(Icons.yard), label: "Plants"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle), label: "Account")
+      ], currentIndex: 0, onTap: null),
     );
   }
 }
