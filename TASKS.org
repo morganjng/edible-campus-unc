@@ -21,8 +21,8 @@
 ** TODO Aesthetic work
 + Task owner: []
 + This app is ugly right now, make it prettier
-** TODO Bed and Plant classes to their own files
-+ Task owner: []
+** DONE Bed and Plant classes to their own files
++ Task owner: [Morgan]
 + Self-explanatory
 ** TODO Testing plan
 + Task owner: []
@@ -77,7 +77,7 @@
 ** TODO Verify data integrity and post
 + Task owner: []
 + Make sure that the data being posted is valid and send it to the server
-*** TODO Authentication
++ Authentication
 ** TODO Aesthetic work
 + Task owner: []
 + Make it pretty
