@@ -7,7 +7,7 @@ import 'ecdata.dart';
 
 void main() async {
   await getData();
-  runApp(const Portal());
+  runApp(Portal());
 }
 
 ECData data = ECData.empty();
@@ -27,7 +27,7 @@ Future<bool> getData() async {
     _serverData = jsonDecode(rl.body);
     var sd = _serverData!;
 
-    data = ECData(sd);
+    data = ECData(sd, false);
 
     return true;
   } else {
@@ -50,7 +50,9 @@ class _HelpPageState extends State<HelpPage> {
 }
 
 class Portal extends StatefulWidget {
-  const Portal({super.key});
+  Widget rightHand = Expanded(flex: 80, child: HelpPage());
+
+  Portal({super.key});
 
   @override
   State<Portal> createState() => PortalState();
@@ -69,20 +71,40 @@ class PortalState extends State<Portal> {
               flex: 20,
               child: ListView(padding: EdgeInsets.zero, children: [
                 ListTile(
+                    title: const Text("Help"),
+                    onTap: () {
+                      setState(() {
+                        widget.rightHand =
+                            const Expanded(flex: 80, child: HelpPage());
+                      });
+                    }),
+                ListTile(
                     title: const Text("Plants"),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PlantsPage(
-                                  gardens: data.gardens, plants: data.plants)));
+                      setState(() {
+                        widget.rightHand =
+                            Expanded(flex: 80, child: data.plantsPage());
+                      });
                     }),
-                const ListTile(title: Text("Beds")),
+                ListTile(
+                  title: const Text("Gardens"),
+                  onTap: () {
+                    setState(() {
+                      widget.rightHand =
+                          Expanded(flex: 80, child: data.gardensPage());
+                    });
+                  },
+                ),
                 const ListTile(title: Text("Settings"))
               ])),
-          const Expanded(flex: 80, child: HelpPage()),
+          widget.rightHand,
         ],
       )),
+      // routes: {
+      //   "/": (context) => HelpPage(),
+      //   "/plants": (context) => data.plantsPage(),
+      //   "/gardens": (context) => data.gardensPage(),
+      // }
     );
   }
 }
