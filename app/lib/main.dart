@@ -42,7 +42,8 @@ Future<bool> getData() async {
   // TODO hash checking with webserver and pulling diffs
   // TODO actually pull (maybe from test server first? at edible_campus_unc/test_server.py)
   //_serverData = jsonDecode(File("edible_campus_data.json").readAsStringSync());
-  var rl = await http.get(Uri.parse('http://192.168.1.103:5000/data'));
+  var rl = await http.get(Uri.parse(
+      'https://edible-campus-unc-server-gribbins.apps.cloudapps.unc.edu/data/latest'));
 
   if (rl.statusCode == 200) {
     _serverData = jsonDecode(rl.body);
