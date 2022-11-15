@@ -27,7 +27,7 @@ Future<bool> getData() async {
     _serverData = jsonDecode(rl.body);
     var sd = _serverData!;
 
-    data = ECData(sd, false);
+    data = ECData(sd);
 
     return true;
   } else {
