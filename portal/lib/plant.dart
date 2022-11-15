@@ -29,6 +29,8 @@ class PlantPage extends StatefulWidget {
 class PlantsPage extends StatefulWidget {
   Map<String, Garden> gardens = {};
   Map<String, Plant> plants = {};
+  Widget rightHand = Expanded(flex: 50, child: Icon(Icons.sledding));
+  List<Widget> plantTiles = List.empty(growable: true);
 
   PlantsPage({
     super.key,
@@ -72,24 +74,30 @@ class _PlantPageState extends State<PlantPage> {
 class _PlantsPageState extends State<PlantsPage> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> plantTiles = List.empty(growable: true);
     for (var p in widget.plants.values) {
-      plantTiles.add(ListTile(
+      widget.plantTiles.add(ListTile(
           title: Text(p.commonName),
           trailing: const Icon(Icons.more_vert),
           onTap: () {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => PlantPage(
-                      plant: p,
-                      gardens: widget.gardens,
-                    )));
+            setState(() {
+              widget.rightHand = Expanded(
+                  flex: 50,
+                  child: PlantPage(
+                    plant: p,
+                    gardens: widget.gardens,
+                  ));
+            });
           }));
     }
     return Scaffold(
-      body: ListView(padding: EdgeInsets.zero, children: plantTiles),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-      ),
-    );
+        body: Row(
+      children: [
+        Expanded(
+            flex: 50,
+            child: ListView(
+                padding: EdgeInsets.zero, children: widget.plantTiles)),
+        widget.rightHand,
+      ],
+    ));
   }
 }

@@ -15,6 +15,7 @@ class GardenPage extends StatefulWidget {
   Garden garden;
   Map<String, Garden> gardens;
   Map<String, Plant> plants;
+  Widget rightHand = Expanded(flex: 50, child: Icon(Icons.energy_savings_leaf));
 
   GardenPage({
     super.key,
@@ -28,9 +29,10 @@ class GardenPage extends StatefulWidget {
 }
 
 class GardensPage extends StatefulWidget {
-  static List<Widget> gardenTiles = List<Widget>.empty(growable: true);
+  List<Widget> gardenTiles = List<Widget>.empty(growable: true);
   Map<String, Garden> gardens;
   Map<String, Plant> plants;
+  Widget rightHand = Expanded(flex: 50, child: Icon(Icons.ice_skating));
 
   GardensPage({
     super.key,
@@ -46,68 +48,67 @@ class _GardenPageState extends State<GardenPage> {
   @override
   Widget build(BuildContext context) {
     var ps = List<Widget>.empty(growable: true);
-    ps.add(ListTile(
-        leading:
-            const Text("Plants", style: TextStyle(fontWeight: FontWeight.bold)),
-        trailing: Text(widget.plants[widget.garden.plants[0]]!.commonName),
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PlantPage(
-                        plant: widget.plants[widget.garden.plants[0]]!,
-                        gardens: widget.gardens,
-                      )));
-        }));
 
-    for (int i = 1; i < widget.garden.plants.length; i++) {
+    for (int i = 0; i < widget.garden.plants.length; i++) {
       ps.add(ListTile(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => PlantPage(
-                      plant: widget.plants[widget.garden.plants[i]]!,
-                      gardens: widget.gardens,
-                    )));
+            setState(() {
+              widget.rightHand = Expanded(
+                flex: 50,
+                child: PlantPage(
+                    plant: widget.plants[widget.garden.plants[i]]!,
+                    gardens: widget.gardens),
+              );
+            });
           },
-          trailing: Text(widget.plants[widget.garden.plants[i]]!.commonName)));
+          leading: Text(widget.plants[widget.garden.plants[i]]!.commonName)));
     }
 
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(8),
-        children: ps,
+        body: Column(children: [
+      Expanded(
+        flex: 50,
+        child: ListView(
+          padding: const EdgeInsets.all(8),
+          children: ps,
+        ),
       ),
-    );
+      widget.rightHand,
+    ]));
   }
 }
 
 class _GardensPageState extends State<GardensPage> {
-  bool bInit = false;
-
   @override
   Widget build(BuildContext context) {
-    if (GardensPage.gardenTiles.isEmpty) {
+    if (widget.gardenTiles.isEmpty) {
       for (var b in widget.gardens.values) {
-        GardensPage.gardenTiles.add(ListTile(
-            title: Text(b.title),
-            trailing: const Icon(Icons.more_vert),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => GardenPage(
-                        garden: b,
-                        gardens: widget.gardens,
-                        plants: widget.plants,
-                      )));
-            }));
+        widget.gardenTiles.add(ListTile(
+          title: Text(b.title),
+          trailing: const Icon(Icons.more_vert),
+          onTap: () {
+            setState(() {
+              widget.rightHand = Expanded(
+                  flex: 50,
+                  child: GardenPage(
+                    garden: b,
+                    gardens: widget.gardens,
+                    plants: widget.plants,
+                  ));
+            });
+          },
+        ));
       }
     }
-
     return Scaffold(
-      body:
-          ListView(padding: EdgeInsets.zero, children: GardensPage.gardenTiles),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-      ),
-    );
+        body: Row(
+      children: [
+        Expanded(
+            flex: 50,
+            child: ListView(
+                padding: EdgeInsets.zero, children: widget.gardenTiles)),
+        widget.rightHand,
+      ],
+    ));
   }
 }

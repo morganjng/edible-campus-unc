@@ -1,18 +1,23 @@
 #+title: Tasks
 
+* General
+** TODO Serialization for Plants, Gardens, and full data
++ Task owner: []
++ [[https://docs.flutter.dev/development/data-and-backend/json][Check this out]]
+** TODO Add key as a member variable for Plants and Gardens
++ Task owner: []
 * App
 ** TODO Remove admin mode from NavDrawer
 + Task owner: []
 + Self-explanatory
+** TODO Make Plants and Gardens tabs show actual information
++ Task owner: []
 ** TODO Filling out README.org
 + Task owner: []
 + Documenting usage and maintenance requirements
 ** TODO Code commenting
 + Task owner: []
 + Descriptive comments for each function and class
-** TODO ToJson for Bed and Plant classes
-+ Task owner: []
-+ Should help with serialization, Flutter has its own way of this
 ** TODO Aesthetic work
 + Task owner: []
 + This app is ugly right now, make it prettier
