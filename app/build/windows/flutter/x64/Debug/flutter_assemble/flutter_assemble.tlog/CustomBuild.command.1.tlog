@@ -1,0 +1,28 @@
+^C:\USERS\DUYDO\DOCUMENTS\VISUAL STUDIO 2022\EDIBLE-CAMPUS-UNC\APP\BUILD\WINDOWS\CMAKEFILES\05E0DF56876292C3111EE2BB99B9B6C5\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\duydo\flutter "PROJECT_DIR=C:\Users\duydo\Documents\Visual Studio 2022\edible-campus-unc\app" FLUTTER_ROOT=C:\Users\duydo\flutter "FLUTTER_EPHEMERAL_DIR=C:\Users\duydo\Documents\Visual Studio 2022\edible-campus-unc\app\windows\flutter\ephemeral" "PROJECT_DIR=C:\Users\duydo\Documents\Visual Studio 2022\edible-campus-unc\app" "FLUTTER_TARGET=C:\Users\duydo\Documents\Visual Studio 2022\edible-campus-unc\app\lib\main.dart" DART_DEFINES=RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false "PACKAGE_CONFIG=C:\Users\duydo\Documents\Visual Studio 2022\edible-campus-unc\app\.dart_tool\package_config.json" C:/Users/duydo/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DUYDO\DOCUMENTS\VISUAL STUDIO 2022\EDIBLE-CAMPUS-UNC\APP\BUILD\WINDOWS\CMAKEFILES\B939DA171E34FAB624DBC6E7D5BEA920\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DUYDO\DOCUMENTS\VISUAL STUDIO 2022\EDIBLE-CAMPUS-UNC\APP\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/windows" "-BC:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows" --check-stamp-file "C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/flutter/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

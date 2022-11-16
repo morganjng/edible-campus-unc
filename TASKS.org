@@ -5,7 +5,7 @@
 + Task owner: []
 + [[https://docs.flutter.dev/development/data-and-backend/json][Check this out]]
 ** TODO Add key as a member variable for Plants and Gardens
-+ Task owner: []
++ Task owner: [Aryaman]
 * App
 ** TODO Remove admin mode from NavDrawer
 + Task owner: []

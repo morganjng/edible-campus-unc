@@ -1,0 +1,9 @@
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/icudtl.dat
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/flutter_windows.dll
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+C:/Users/duydo/Documents/Visual Studio 2022/edible-campus-unc/app/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag
