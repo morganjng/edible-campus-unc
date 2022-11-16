@@ -4,11 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'ecdata.dart';
+import 'plant.dart';
+import 'garden.dart';
 
 void main() async {
   await getData();
   runApp(Portal());
 }
+
+List<String> entries = ["", "", "", "", "", "", "", ""];
 
 ECData data = ECData.empty();
 ThemeData theme = ThemeData(
@@ -58,7 +62,7 @@ class _HelpPageState extends State<HelpPage> {
             http.post(
                 Uri.parse(
                     "https://edible-campus-unc-server-gribbins.apps.cloudapps.unc.edu/data/post"),
-                body: data.toJson());
+                body: jsonEncode(data));
           })
     ]));
   }
@@ -92,25 +96,25 @@ class PortalState extends State<Portal> {
             child: DefaultTabController(
                 length: 6,
                 child: Scaffold(
-                    appBar: PreferredSize(
-                        preferredSize: const Size(100, 100),
+                    appBar: const PreferredSize(
+                        preferredSize: Size(100, 100),
                         child: Material(
-                            color: const Color(0xFF333333),
+                            color: Color(0xFF333333),
                             child: TabBar(tabs: [
-                              const Tab(child: Text("Help")),
-                              const Tab(child: Text("Add a Plant")),
-                              const Tab(child: Text("Add a Garden")),
-                              const Tab(child: Text("Edit a Plant")),
-                              const Tab(child: Text("Edit a Garden")),
-                              const Tab(child: Text("Settings"))
+                              Tab(child: Text("Help")),
+                              Tab(child: Text("Add a Plant")),
+                              Tab(child: Text("Add a Garden")),
+                              Tab(child: Text("Edit a Plant")),
+                              Tab(child: Text("Edit a Garden")),
+                              Tab(child: Text("Settings"))
                             ]))),
                     body: TabBarView(children: [
                       const HelpPage(),
                       AddPlantPage(),
                       AddGardenPage(),
-                      EditPlantPage(),
-                      EditGardenPage(),
-                      SettingsPage(),
+                      const EditPlantPage(),
+                      const EditGardenPage(),
+                      const SettingsPage(),
                     ]))))
       ])),
     );
@@ -118,48 +122,12 @@ class PortalState extends State<Portal> {
 }
 
 class AddPlantPage extends StatefulWidget {
-  List<Widget> dataFields = [
-    const TextField(
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-      ),
-      textAlign: TextAlign.center,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-      ),
-      textAlign: TextAlign.center,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-      ),
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-      ),
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-      ),
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-    ),
-    TextButton(
-      style: TextButton.styleFrom(
-        backgroundColor: const Color(0xFF333333),
-        foregroundColor: const Color(0xFFFFFFFF),
-      ),
-      child: const Text("Save"),
-      onPressed: () {},
-    )
+  List<String> entries = [
+    "",
+    "",
+    "",
+    "",
+    "",
   ];
 
   AddPlantPage({super.key});
@@ -173,6 +141,93 @@ class AddPlantPage extends StatefulWidget {
 class _AddPlantPageState extends State<AddPlantPage> {
   @override
   Widget build(BuildContext context) {
+    List<Widget> dataFields = [
+      TextField(
+        decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+        ),
+        textAlign: TextAlign.center,
+        onChanged: (text) {
+          widget.entries[0] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[0] = text;
+        },
+      ),
+      TextField(
+        decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+        ),
+        textAlign: TextAlign.center,
+        onChanged: (text) {
+          widget.entries[1] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[1] = text;
+        },
+      ),
+      TextField(
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+        ),
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        onChanged: (text) {
+          widget.entries[4] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[2] = text;
+        },
+      ),
+      TextField(
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+        ),
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        onChanged: (text) {
+          widget.entries[3] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[3] = text;
+        },
+      ),
+      TextField(
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+          ),
+          keyboardType: TextInputType.multiline,
+          maxLines: null,
+          onChanged: (text) {
+            widget.entries[4] = text;
+          },
+          onSubmitted: (text) {
+            widget.entries[4] = text;
+          }),
+    ];
+
+    TextButton saveButton = TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: const Color(0xFF333333),
+          foregroundColor: const Color(0xFFFFFFFF),
+        ),
+        child: const Text("Save"),
+        onPressed: () {
+          if (widget.entries[0] != "" &&
+              widget.entries[1] != "" &&
+              widget.entries[2] != "" &&
+              widget.entries[3] != "" &&
+              widget.entries[4] != "") {
+            data.plants[widget.entries[0].toLowerCase()] = Plant(
+                widget.entries[0],
+                widget.entries[1],
+                parseStringToList(widget.entries[4]),
+                widget.entries[2],
+                widget.entries[3],
+                widget.entries[0].toLowerCase());
+          }
+        });
+
     return Row(children: [
       Expanded(flex: 10, child: Container()),
       Expanded(
@@ -180,31 +235,20 @@ class _AddPlantPageState extends State<AddPlantPage> {
           child: Column(children: [
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Plant Common Name")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[0]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[0]),
             const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text("Plant Scientific Name")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[1]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[1]),
             const Padding(padding: EdgeInsets.all(8.0), child: Text("Recipes")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[2]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[2]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Description")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[3]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[3]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Image hyperlinks")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[4]),
-            Padding(
-                padding: const EdgeInsets.all(8.0), child: widget.dataFields[5])
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[4]),
+            Padding(padding: const EdgeInsets.all(8.0), child: saveButton)
           ])),
       Expanded(flex: 10, child: Container())
     ]);
@@ -212,41 +256,11 @@ class _AddPlantPageState extends State<AddPlantPage> {
 }
 
 class AddGardenPage extends StatefulWidget {
-  List<Widget> dataFields = [
-    const TextField(
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-      ),
-      textAlign: TextAlign.center,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-      ),
-      textAlign: TextAlign.center,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-      ),
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-      ),
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-    ),
-    TextButton(
-      style: TextButton.styleFrom(
-        backgroundColor: const Color(0xFF333333),
-        foregroundColor: const Color(0xFFFFFFFF),
-      ),
-      child: const Text("Save"),
-      onPressed: () {},
-    )
+  List<String> entries = [
+    "",
+    "",
+    "",
+    "",
   ];
 
   AddGardenPage({super.key});
@@ -258,34 +272,99 @@ class AddGardenPage extends StatefulWidget {
 class _AddGardenPageState extends State<AddGardenPage> {
   @override
   Widget build(BuildContext context) {
+    List<Widget> dataFields = [
+      TextField(
+        decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+        ),
+        textAlign: TextAlign.center,
+        onChanged: (text) {
+          widget.entries[0] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[0] = text;
+        },
+      ),
+      TextField(
+        decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+        ),
+        textAlign: TextAlign.center,
+        onChanged: (text) {
+          widget.entries[1] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[1] = text;
+        },
+      ),
+      TextField(
+        decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+        ),
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        onChanged: (text) {
+          widget.entries[2] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[2] = text;
+        },
+      ),
+      TextField(
+        decoration: const InputDecoration(
+          border: OutlineInputBorder(),
+        ),
+        keyboardType: TextInputType.multiline,
+        maxLines: null,
+        onChanged: (text) {
+          widget.entries[3] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[3] = text;
+        },
+      ),
+    ];
+
+    TextButton saveButton = TextButton(
+        style: TextButton.styleFrom(
+          backgroundColor: const Color(0xFF333333),
+          foregroundColor: const Color(0xFFFFFFFF),
+        ),
+        child: const Text("Save"),
+        onPressed: () {
+          if (widget.entries[0] != "" &&
+              widget.entries[1] != "" &&
+              widget.entries[2] != "" &&
+              widget.entries[3] != "" &&
+              widget.entries[4] != "") {
+            data.gardens[widget.entries[0].toLowerCase()] = Garden(
+                widget.entries[0],
+                double.parse(widget.entries[1]),
+                double.parse(widget.entries[2]),
+                [],
+                parseStringToList(widget.entries[3]),
+                widget.entries[0].toLowerCase());
+          }
+        });
+
     return Row(children: [
       Expanded(flex: 10, child: Container()),
       Expanded(
           flex: 80,
           child: Column(children: [
             const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: const Text("Garden Title")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[0]),
+                padding: EdgeInsets.all(8.0), child: Text("Garden Title")),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[0]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Latitude")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[1]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[1]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Longitude")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[2]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[2]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Image hyperlinks")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[3]),
-            Padding(
-                padding: const EdgeInsets.all(8.0), child: widget.dataFields[4])
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[3]),
+            Padding(padding: const EdgeInsets.all(8.0), child: saveButton)
           ])),
       Expanded(flex: 10, child: Container())
     ]);
@@ -338,6 +417,13 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Icon(Icons.sledding);
+    return const Icon(Icons.sledding);
   }
+}
+
+List<String> parseStringToList(String text) {
+  List<String> rv = List<String>.empty(growable: true);
+  // TODO this ^
+  rv.add(text);
+  return rv;
 }

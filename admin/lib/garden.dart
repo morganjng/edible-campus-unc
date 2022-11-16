@@ -26,43 +26,19 @@ class Garden {
         "images": images,
       };
 
-  Garden(this.title, this.latitude, this.longitude, this.plants, this.images);
+  Garden(this.title, this.latitude, this.longitude, this.plants, this.images,
+      this.key);
 }
 
 class GardenPage extends StatefulWidget {
   Garden garden;
   String dropdownValue0 = "";
   String dropdownValue1 = "";
+  List<String> entries = ["", "", ""];
   Map<String, Garden> gardens;
   Map<String, Plant> plants;
   Widget rightHand =
       const Expanded(flex: 50, child: Icon(Icons.energy_savings_leaf));
-  List<TextField> dataFields = [
-    const TextField(
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-      ),
-      textAlign: TextAlign.center,
-    ),
-    const TextField(
-      decoration: InputDecoration(
-        border: UnderlineInputBorder(),
-      ),
-      textAlign: TextAlign.center,
-    ),
-    const TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-        ),
-        textAlign: TextAlign.center),
-    const TextField(
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-      ),
-      keyboardType: TextInputType.multiline,
-      maxLines: null,
-    ),
-  ];
   List<DropdownButton> dropdowns = List<DropdownButton>.empty(growable: true);
 
   List<DropdownMenuItem> allplants =
@@ -100,6 +76,45 @@ class GardensPage extends StatefulWidget {
 class _GardenPageState extends State<GardenPage> {
   @override
   Widget build(BuildContext context) {
+    List<TextField> dataFields = [
+      TextField(
+        decoration: InputDecoration(
+            border: const UnderlineInputBorder(),
+            hintText: widget.garden.title),
+        textAlign: TextAlign.center,
+        onChanged: (text) {
+          widget.entries[0] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[0] = text;
+        },
+      ),
+      TextField(
+        decoration: InputDecoration(
+            border: const UnderlineInputBorder(),
+            hintText: widget.garden.latitude.toString()),
+        textAlign: TextAlign.center,
+        onChanged: (text) {
+          widget.entries[1] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[1] = text;
+        },
+      ),
+      TextField(
+        decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: widget.garden.longitude.toString()),
+        textAlign: TextAlign.center,
+        onChanged: (text) {
+          widget.entries[2] = text;
+        },
+        onSubmitted: (text) {
+          widget.entries[2] = text;
+        },
+      ),
+    ];
+
     List<TextButton> saveButtons = [
       TextButton(
         style: TextButton.styleFrom(
@@ -107,7 +122,19 @@ class _GardenPageState extends State<GardenPage> {
           foregroundColor: const Color(0xFFFFFFFF),
         ),
         child: const Text("Save"),
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            if (widget.entries[0] != "") {
+              widget.garden.title = widget.entries[0];
+            }
+            if (widget.entries[1] != "") {
+              widget.garden.latitude = double.parse(widget.entries[1]);
+            }
+            if (widget.entries[2] != "") {
+              widget.garden.longitude = double.parse(widget.entries[2]);
+            }
+          });
+        },
       ),
       TextButton(
         style: TextButton.styleFrom(
@@ -185,27 +212,6 @@ class _GardenPageState extends State<GardenPage> {
         value: widget.dropdownValue1.toString(),
       );
     }
-    widget.dataFields[0] = TextField(
-      decoration: InputDecoration(
-        border: const UnderlineInputBorder(),
-        hintText: widget.garden.title,
-      ),
-      textAlign: TextAlign.center,
-    );
-    widget.dataFields[1] = TextField(
-      decoration: InputDecoration(
-        border: const UnderlineInputBorder(),
-        hintText: widget.garden.latitude.toString(),
-      ),
-      textAlign: TextAlign.center,
-    );
-    widget.dataFields[2] = TextField(
-      decoration: InputDecoration(
-        border: const UnderlineInputBorder(),
-        hintText: widget.garden.longitude.toString(),
-      ),
-      textAlign: TextAlign.center,
-    );
 
     return Row(children: [
       Expanded(flex: 10, child: Container()),
@@ -213,19 +219,13 @@ class _GardenPageState extends State<GardenPage> {
           flex: 80,
           child: Column(children: [
             const Padding(padding: EdgeInsets.all(8.0), child: Text("Title")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[0]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[0]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Latitude")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[1]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[1]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Longitude")),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: widget.dataFields[2]),
+            Padding(padding: const EdgeInsets.all(8.0), child: dataFields[2]),
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Add a plant")),
             Row(
@@ -258,7 +258,6 @@ class _GardenPageState extends State<GardenPage> {
                         child: saveButtons[2]))
               ],
             ),
-            Padding(padding: const EdgeInsets.all(8.0), child: saveButtons[0])
           ])),
       Expanded(flex: 10, child: Container())
     ]);

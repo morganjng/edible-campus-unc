@@ -22,8 +22,8 @@ class ECData {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> rv = {
-      "plant_keys": plants.keys,
-      "garden_keys": gardens.keys,
+      "plant_keys": plants.keys.toList().toString(),
+      "garden_keys": gardens.keys.toList().toString(),
     };
     Map<String, dynamic> ps = {};
     Map<String, dynamic> gs = {};
