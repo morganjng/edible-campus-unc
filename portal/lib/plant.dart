@@ -2,11 +2,27 @@ import 'package:flutter/material.dart';
 import 'garden.dart';
 
 class Plant {
-  String commonName;
-  String scientificName;
-  List<dynamic> images;
-  String recipes;
-  String description;
+  String commonName = "";
+  String scientificName = "";
+  List<dynamic> images = [];
+  String recipes = "";
+  String description = "";
+
+  Plant.fromJson(Map<String, dynamic> json) {
+    commonName = json["common"];
+    scientificName = json["scientific"];
+    images = json["images"];
+    recipes = json["recipes"];
+    description = json["description"];
+  }
+
+  Map<String, dynamic> toJson() => {
+        "common": commonName,
+        "scientific": scientificName,
+        "images": images,
+        "recipes": recipes,
+        "description": description,
+      };
 
   Plant(this.commonName, this.scientificName, this.images, this.recipes,
       this.description);
@@ -74,20 +90,22 @@ class _PlantPageState extends State<PlantPage> {
 class _PlantsPageState extends State<PlantsPage> {
   @override
   Widget build(BuildContext context) {
-    for (var p in widget.plants.values) {
-      widget.plantTiles.add(ListTile(
-          title: Text(p.commonName),
-          trailing: const Icon(Icons.more_vert),
-          onTap: () {
-            setState(() {
-              widget.rightHand = Expanded(
-                  flex: 50,
-                  child: PlantPage(
-                    plant: p,
-                    gardens: widget.gardens,
-                  ));
-            });
-          }));
+    if (widget.plantTiles.isEmpty) {
+      for (var p in widget.plants.values) {
+        widget.plantTiles.add(ListTile(
+            title: Text(p.commonName),
+            trailing: const Icon(Icons.more_vert),
+            onTap: () {
+              setState(() {
+                widget.rightHand = Expanded(
+                    flex: 50,
+                    child: PlantPage(
+                      plant: p,
+                      gardens: widget.gardens,
+                    ));
+              });
+            }));
+      }
     }
     return Scaffold(
         body: Row(
