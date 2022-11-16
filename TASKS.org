@@ -19,7 +19,7 @@
 + Task owner: []
 + Descriptive comments for each function and class
 ** TODO Aesthetic work
-+ Task owner: []
++ Task owner: [David]
 + This app is ugly right now, make it prettier
 ** DONE Bed and Plant classes to their own files
 + Task owner: [Morgan]
