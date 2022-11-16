@@ -84,3 +84,8 @@
 ** TODO Descriptive errors
 + Task owner: []
 + Errors that describe the problem in depth
+* Portal
+** TODO Admin backend
++ Task owner: []
++ submit and delete logic in the backend. Submit should add the plant,and delete should delete the plant in the json file
+
