@@ -11,7 +11,7 @@
 + Task owner: []
 + Self-explanatory
 ** TODO Make Plants and Gardens tabs show actual information
-+ Task owner: []
++ Task owner: [Aryaman]
 ** TODO Filling out README.org
 + Task owner: []
 + Documenting usage and maintenance requirements
