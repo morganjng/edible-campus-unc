@@ -45,7 +45,18 @@ class HelpPage extends StatefulWidget {
 class _HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Text(data.toJson().toString()));
+    return Scaffold(
+        body: Column(children: [
+      Expanded(flex: 80, child: Text(data.toJson().toString())),
+      TextButton(
+          child: const Text("POST"),
+          onPressed: () {
+            http.post(
+                Uri.parse(
+                    "https://edible-campus-unc-server-gribbins.apps.cloudapps.unc.edu/data/post"),
+                body: data.toJson());
+          })
+    ]));
   }
 }
 
@@ -65,7 +76,7 @@ class PortalState extends State<Portal> {
       title: "Edible Campus Admin Portal",
       theme: theme,
       home: Scaffold(
-          body: Row(
+          body: Column(
         children: <Widget>[
           Expanded(
               flex: 20,
