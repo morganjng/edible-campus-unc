@@ -5,6 +5,19 @@ class ECData {
   Map<String, Plant> plants = {};
   Map<String, Garden> gardens = {};
 
+  ECData.fromJson(Map<String, dynamic> json) {
+    for (int i = 0; i < json["plant_keys"].length; i++) {
+      plants[json["plant_keys"][i].toString()] = Plant.fromJson(
+          json["plant"][json["plant_keys"][i].toString()],
+          json["plant_keys"][i].toString());
+    }
+    for (int i = 0; i < json["garden_keys"].length; i++) {
+      gardens[json["garden_keys"][i].toString()] = Garden.fromJson(
+          json["garden"][json["garden_keys"][i].toString()],
+          json["garden_keys"][i].toString());
+    }
+  }
+
   ECData(Map<String, dynamic> jsonData) {
     for (int i = 0; i < jsonData["plant_keys"].length; i++) {
       plants[jsonData["plant_keys"][i].toString()] = Plant(

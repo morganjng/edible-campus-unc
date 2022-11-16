@@ -2,14 +2,32 @@ import 'package:flutter/material.dart';
 import 'plant.dart';
 
 class Garden {
-  String title;
-  double latitude;
-  double longitude;
-  List<dynamic> plants;
-  List<dynamic> images;
-  String key;
+  String title = "";
+  double latitude = 0.0;
+  double longitude = 0.0;
+  List<dynamic> plants = [];
+  List<dynamic> images = [];
+  String key = "";
 
-  Garden(this.title, this.latitude, this.longitude, this.plants, this.images, this.key);
+  Garden.fromJson(Map<String, dynamic> json, String key) {
+    title = json["title"];
+    latitude = json["latitude"];
+    longitude = json["longitude"];
+    plants = json["plants"];
+    images = json["images"];
+    key = key;
+  }
+
+  Map<String, dynamic> toJson() => {
+        "title": title,
+        "latitude": latitude,
+        "longitude": longitude,
+        "plants": plants,
+        "images": images,
+      };
+
+  Garden(this.title, this.latitude, this.longitude, this.plants, this.images,
+      this.key);
 }
 
 class GardenPage extends StatefulWidget {

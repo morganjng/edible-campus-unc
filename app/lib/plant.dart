@@ -2,12 +2,29 @@ import 'package:flutter/material.dart';
 import 'garden.dart';
 
 class Plant {
-  String commonName;
-  String scientificName;
-  List<dynamic> images;
-  String recipes;
-  String description;
-  String key;
+  String commonName = "";
+  String scientificName = "";
+  List<dynamic> images = [];
+  String recipes = "";
+  String description = "";
+  String key = "";
+
+  Plant.fromJson(Map<String, dynamic> json, String key) {
+    commonName = json["common"];
+    scientificName = json["scientific"];
+    images = json["images"];
+    recipes = json["recipes"];
+    description = json["description"];
+    key = key;
+  }
+
+  Map<String, dynamic> toJson() => {
+        "common": commonName,
+        "scientific": scientificName,
+        "images": images,
+        "recipes": recipes,
+        "description": description,
+      };
 
   Plant(this.commonName, this.scientificName, this.images, this.recipes,
       this.description, this.key);

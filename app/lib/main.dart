@@ -4,34 +4,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'dart:convert';
+import 'ecdata.dart';
 
 ThemeData theme =
     ThemeData(colorSchemeSeed: const Color(0xFF62C6F2), useMaterial3: true);
 
 Map<String, dynamic>? _serverData;
-Map<String, Plant> plants = {};
-Map<String, Bed> beds = {};
-
-class Plant {
-  String commonName;
-  String scientificName;
-  List<dynamic> images;
-  String recipes;
-  String description;
-
-  Plant(this.commonName, this.scientificName, this.images, this.recipes,
-      this.description);
-}
-
-class Bed {
-  String title;
-  double latitude;
-  double longitude;
-  List<dynamic> plants;
-  List<dynamic> images;
-
-  Bed(this.title, this.latitude, this.longitude, this.plants, this.images);
-}
+ECData data = ECData.empty();
 
 void main() async {
   await getData();
@@ -48,28 +27,9 @@ Future<bool> getData() async {
   if (rl.statusCode == 200) {
     _serverData = jsonDecode(rl.body);
     var sd = _serverData!;
-    String title;
-    for (int i = 0; i < sd["garden_keys"].length; i++) {
-      title = sd["garden"][sd["garden_keys"][i].toString()]["title"].toString();
-      beds[sd["garden_keys"][i].toString()] = Bed(
-        sd["garden"][sd["garden_keys"][i].toString()]["title"].toString(),
-        sd["garden"][sd["garden_keys"][i].toString()]["latitude"].toDouble(),
-        sd["garden"][sd["garden_keys"][i].toString()]["longitude"].toDouble(),
-        sd["garden"][sd["garden_keys"][i].toString()]["plants"].toList(),
-        sd["garden"][sd["garden_keys"][i].toString()]["images"].toList(),
-      );
-    }
 
-    for (int i = 0; i < sd["plant_keys"].length; i++) {
-      title = sd["plant"][sd["plant_keys"][i].toString()]["common"].toString();
-      plants[sd["plant_keys"][i].toString()] = Plant(
-        sd["plant"][sd["plant_keys"][i].toString()]["common"].toString(),
-        sd["plant"][sd["plant_keys"][i].toString()]["scientific"].toString(),
-        sd["plant"][sd["plant_keys"][i].toString()]["images"].toList(),
-        sd["plant"][sd["plant_keys"][i].toString()]["recipes"].toString(),
-        sd["plant"][sd["plant_keys"][i].toString()]["description"].toString(),
-      );
-    }
+    data = ECData.fromJson(sd);
+
     return true;
   } else {
     throw Exception("Failed to get data");

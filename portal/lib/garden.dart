@@ -7,13 +7,15 @@ class Garden {
   double longitude = 0.0;
   List<dynamic> plants = [];
   List<dynamic> images = [];
+  String key = "";
 
-  Garden.fromJson(Map<String, dynamic> json) {
+  Garden.fromJson(Map<String, dynamic> json, String key) {
     title = json["title"];
     latitude = json["latitude"];
     longitude = json["longitude"];
     plants = json["plants"];
     images = json["images"];
+    key = key;
   }
 
   Map<String, dynamic> toJson() => {
