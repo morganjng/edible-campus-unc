@@ -7,8 +7,9 @@ class Garden {
   double longitude;
   List<dynamic> plants;
   List<dynamic> images;
+  String key;
 
-  Garden(this.title, this.latitude, this.longitude, this.plants, this.images);
+  Garden(this.title, this.latitude, this.longitude, this.plants, this.images, this.key);
 }
 
 class GardenPage extends StatefulWidget {

@@ -7,9 +7,10 @@ class Plant {
   List<dynamic> images;
   String recipes;
   String description;
+  String key;
 
   Plant(this.commonName, this.scientificName, this.images, this.recipes,
-      this.description);
+      this.description, this.key);
 }
 
 class PlantPage extends StatefulWidget {

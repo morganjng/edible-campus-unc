@@ -18,6 +18,8 @@ class ECData {
             .toString(),
         jsonData["plant"][jsonData["plant_keys"][i].toString()]["description"]
             .toString(),
+        jsonData["plant"][jsonData["plant_keys"][i].toString()]["key"]
+            .toString(),
       );
     }
     for (int i = 0; i < jsonData["garden_keys"].length; i++) {
@@ -31,6 +33,8 @@ class ECData {
         jsonData["garden"][jsonData["garden_keys"][i].toString()]["plants"]
             .toList(),
         jsonData["garden"][jsonData["garden_keys"][i].toString()]["images"]
+            .toList(),
+        jsonData["garden"][jsonData["garden_keys"][i].toString()]["key"]
             .toList(),
       );
     }
