@@ -45,7 +45,7 @@ class HelpPage extends StatefulWidget {
 class _HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Column(children: const []));
+    return Scaffold(body: Text(data.toJson().toString()));
   }
 }
 

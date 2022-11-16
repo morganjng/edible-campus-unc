@@ -20,6 +20,26 @@ class ECData {
 
   ECData.empty();
 
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> rv = {
+      "plant_keys": plants.keys,
+      "garden_keys": gardens.keys,
+    };
+    Map<String, dynamic> ps = {};
+    Map<String, dynamic> gs = {};
+
+    for (String plant_key in plants.keys) {
+      ps[plant_key] = plants[plant_key]!.toJson();
+    }
+    for (String garden_key in gardens.keys) {
+      gs[garden_key] = gardens[garden_key]!.toJson();
+    }
+    rv["garden"] = gs;
+    rv["plant"] = ps;
+
+    return rv;
+  }
+
   GardenPage gardenPage(String key) {
     return GardenPage(garden: gardens[key]!, plants: plants, gardens: gardens);
   }
