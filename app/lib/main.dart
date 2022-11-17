@@ -119,14 +119,13 @@ class ECMapState extends State<ECMap> {
   @override
   Widget build(BuildContext context) {
     Set<Marker> markers = {};
-    data.gardens.values.forEach((bed) => markers.add(Marker(
-        markerId: MarkerId(bed.title),
-        position: LatLng(bed.latitude, bed.longitude),
+    data.gardens.keys.forEach((bed) => markers.add(Marker(
+        markerId: MarkerId(data.gardens[bed]!.title),
+        position:
+            LatLng(data.gardens[bed]!.latitude, data.gardens[bed]!.longitude),
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => data.gardenPage(bed.key)));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => data.gardenPage(key)));
         })));
 
     return Scaffold(
