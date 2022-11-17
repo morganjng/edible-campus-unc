@@ -299,7 +299,7 @@ class ECMapState extends State<ECMap> {
         position: LatLng(bed.latitude, bed.longitude),
         onTap: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => data.plantPage(bed.key)));
+              MaterialPageRoute(builder: (context) => data.gardenPage(bed.key)));
         })));
 
     return Scaffold(
