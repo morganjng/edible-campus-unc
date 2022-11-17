@@ -48,7 +48,7 @@ class ECData {
         jsonData["garden"][jsonData["garden_keys"][i].toString()]["images"]
             .toList(),
         jsonData["garden"][jsonData["garden_keys"][i].toString()]["key"]
-            .toList(),
+            .toString(),
       );
     }
   }
