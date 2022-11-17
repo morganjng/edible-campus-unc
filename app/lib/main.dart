@@ -125,7 +125,7 @@ class ECMapState extends State<ECMap> {
             LatLng(data.gardens[bed]!.latitude, data.gardens[bed]!.longitude),
         onTap: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => data.gardenPage(key)));
+              MaterialPageRoute(builder: (context) => data.gardenPage(bed)));
         })));
 
     return Scaffold(
