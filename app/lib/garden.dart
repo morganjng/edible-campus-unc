@@ -23,7 +23,7 @@ class Garden {
         "latitude": latitude,
         "longitude": longitude,
         "plants": plants,
-        "images": images,
+        "images": images
       };
 
   Garden(this.title, this.latitude, this.longitude, this.plants, this.images,
@@ -65,21 +65,7 @@ class _GardenPageState extends State<GardenPage> {
   @override
   Widget build(BuildContext context) {
     var ps = List<Widget>.empty(growable: true);
-    ps.add(ListTile(
-        leading:
-            const Text("Plants", style: TextStyle(fontWeight: FontWeight.bold)),
-        trailing: Text(widget.plants[widget.garden.plants[0]]!.commonName),
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PlantPage(
-                        plant: widget.plants[widget.garden.plants[0]]!,
-                        gardens: widget.gardens,
-                      )));
-        }));
-
-    for (int i = 1; i < widget.garden.plants.length; i++) {
+    for (int i = 0; i < widget.garden.plants.length; i++) {
       ps.add(ListTile(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
@@ -128,13 +114,6 @@ class _GardensPageState extends State<GardensPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.crib), label: "Gardens"),
-        BottomNavigationBarItem(icon: Icon(Icons.yard), label: "Plants"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle), label: "Account")
-      ], currentIndex: 0, onTap: null),
     );
   }
 }

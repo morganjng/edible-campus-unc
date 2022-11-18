@@ -62,28 +62,29 @@ class _PlantPageState extends State<PlantPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: Text(widget.plant.commonName)),
         body: Row(children: [
-      Column(children: const [
-        Text("Common Name",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        Text("Scientific Name",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        Text("Recipes",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-        Text("Description",
-            textAlign: TextAlign.left,
-            style: TextStyle(fontWeight: FontWeight.bold)),
-      ]),
-      Column(children: [
-        Text(widget.plant.commonName, textAlign: TextAlign.right),
-        Text(widget.plant.scientificName, textAlign: TextAlign.right),
-        Text(widget.plant.recipes, textAlign: TextAlign.right),
-        Text(widget.plant.description, textAlign: TextAlign.right),
-      ])
-    ]));
+          Column(children: const [
+            Text("Common Name",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Scientific Name",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Recipes",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            Text("Description",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold)),
+          ]),
+          Column(children: [
+            Text(widget.plant.commonName, textAlign: TextAlign.right),
+            Text(widget.plant.scientificName, textAlign: TextAlign.right),
+            Text(widget.plant.recipes, textAlign: TextAlign.right),
+            Text(widget.plant.description, textAlign: TextAlign.right),
+          ])
+        ]));
   }
 }
 
@@ -107,13 +108,6 @@ class _PlantsPageState extends State<PlantsPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(Icons.crib), label: "Gardens"),
-        BottomNavigationBarItem(icon: Icon(Icons.yard), label: "Plants"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle), label: "Account")
-      ], currentIndex: 0, onTap: null),
     );
   }
 }
