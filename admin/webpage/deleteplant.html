@@ -220,7 +220,7 @@
   </head>
   <body>
     <div class="testbox">
-      <form action="/" method = "POST">
+      <form action="/delete" method = "POST">
         <div class="banner">
           <h1>Edible Campus Interactive M(App)</h1>
         </div>
@@ -231,7 +231,7 @@
         <div class="item">
             <label for="name">Plantbed<span>*</span></label>
           </div>
-        <select>
+        <select id = "bed" name = "bed" required>
           <option value="" disabled selected></option>
           <option value="1">Fetzer Gym Satellite Bed</option>
           <option value="">Graham Residence Hall Satellite Bed</option>
