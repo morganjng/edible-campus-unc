@@ -47,7 +47,6 @@ class GardenPage extends StatefulWidget {
 }
 
 class GardensPage extends StatefulWidget {
-  static List<Widget> gardenTiles = List<Widget>.empty(growable: true);
   Map<String, Garden> gardens;
   Map<String, Plant> plants;
 
@@ -64,7 +63,9 @@ class GardensPage extends StatefulWidget {
 class _GardenPageState extends State<GardenPage> {
   @override
   Widget build(BuildContext context) {
-    var ps = List<Widget>.empty(growable: true);
+    print("he");
+    print(widget.garden.plants.toList().toString());
+    List<Widget> ps = List<Widget>.empty(growable: true);
     for (int i = 0; i < widget.garden.plants.length; i++) {
       ps.add(ListTile(
           onTap: () {
@@ -91,26 +92,24 @@ class _GardensPageState extends State<GardensPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (GardensPage.gardenTiles.isEmpty) {
-      for (var b in widget.gardens.values) {
-        GardensPage.gardenTiles.add(ListTile(
-            title: Text(b.title),
-            trailing: const Icon(Icons.more_vert),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => GardenPage(
-                        garden: b,
-                        gardens: widget.gardens,
-                        plants: widget.plants,
-                      )));
-            }));
-      }
+    List<Widget> gardenTiles = List<Widget>.empty(growable: true);
+    for (var b in widget.gardens.values) {
+      gardenTiles.add(ListTile(
+          title: Text(b.title),
+          trailing: const Icon(Icons.more_vert),
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => GardenPage(
+                      garden: b,
+                      gardens: widget.gardens,
+                      plants: widget.plants,
+                    )));
+          }));
     }
 
     return Scaffold(
       appBar: AppBar(title: const Text("Gardens")),
-      body:
-          ListView(padding: EdgeInsets.zero, children: GardensPage.gardenTiles),
+      body: ListView(padding: EdgeInsets.zero, children: gardenTiles),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
       ),
