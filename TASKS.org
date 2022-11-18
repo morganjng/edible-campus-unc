@@ -84,8 +84,11 @@
 ** TODO Descriptive errors
 + Task owner: []
 + Errors that describe the problem in depth
-* Portal
+* Admin
+** TODO Admin frontend
++ Task owner: [Viet]
++ Make a website for admin to update information of plant bed
 ** TODO Admin backend
-+ Task owner: []
++ Task owner: [Viet]
 + submit and delete logic in the backend. Submit should add the plant,and delete should delete the plant in the json file
 
