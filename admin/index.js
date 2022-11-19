@@ -33,13 +33,13 @@ app.post("/",urlencodedParser, function(req, res) {
 })
 
 app.post('/delete', urlencodedParser, function(req, res) {
-    const fileData = fs.readFileSync("test.json", "utf8")
+    const fileData = fs.readFileSync("../app/edible_campus_data.json", "utf8")
     const jsonData = JSON.parse(fileData)
     var index = jsonData.garden[req.body.bed].plants.indexOf(req.body.name)
     if (index > -1) {
         jsonData.garden[req.body.bed].plants.splice(index, 1);
     }
-    fs.writeFile("test.json", JSON.stringify(jsonData, null, 2), (err) => console.log(err))
+    fs.writeFile("../app/edible_campus_data.json", JSON.stringify(jsonData, null, 2), (err) => console.log(err))
     res.redirect('back');
 })
 
