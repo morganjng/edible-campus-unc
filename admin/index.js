@@ -9,8 +9,7 @@ const fs = require('fs')
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.post("/",urlencodedParser, function(req, res) {
-    // fs.readFile("../app/edible_campus_data.json", "utf8", (err, jsonString) => {
-    const fileData = fs.readFileSync("test.json", "utf8")
+    const fileData = fs.readFileSync("../app/edible_campus_data.json", "utf8")
     const jsonData = JSON.parse(fileData)  
     //push new plant into garden
     if(!(jsonData.garden[req.body.bed].plants.includes(req.body.name))){
@@ -28,21 +27,20 @@ app.post("/",urlencodedParser, function(req, res) {
         description : req.body.description
     }
     jsonData.plant[req.body.name] = plant
-    fs.writeFile("test.json", JSON.stringify(jsonData, null, 2), (err) => console.log(err))
+    fs.writeFile("../app/edible_campus_data.json", JSON.stringify(jsonData, null, 2), (err) => console.log(err))
 
     res.redirect('back');
 })
-// [Object: null prototype] {
-//     bed: 'stacy',
-//     name: 'hkj',
-//     s_name: 'jkh',
-//     recipe: 'khkjh',
-//     image: 'plover_and_chick.jpeg'
-//   }
+
 app.post('/delete', urlencodedParser, function(req, res) {
     const fileData = fs.readFileSync("test.json", "utf8")
-    const jsonData = JSON.parse(fileData)  
-    
+    const jsonData = JSON.parse(fileData)
+    var index = jsonData.garden[req.body.bed].plants.indexOf(req.body.name)
+    if (index > -1) {
+        jsonData.garden[req.body.bed].plants.splice(index, 1);
+    }
+    fs.writeFile("test.json", JSON.stringify(jsonData, null, 2), (err) => console.log(err))
+    res.redirect('back');
 })
 
 app.use(express.static("webpage"))
