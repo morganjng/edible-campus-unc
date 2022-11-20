@@ -63,9 +63,26 @@ class GardensPage extends StatefulWidget {
 class _GardenPageState extends State<GardenPage> {
   @override
   Widget build(BuildContext context) {
-    print("he");
-    print(widget.garden.plants.toList().toString());
+    // print("he");
+    // print(widget.garden.plants.toList().toString());
     List<Widget> ps = List<Widget>.empty(growable: true);
+    ps.add(const Text("Common Name",
+        textAlign: TextAlign.left,
+        style: TextStyle(fontWeight: FontWeight.bold)));
+    ps.add(ListTile(leading: Text(widget.garden.title)));
+
+    ps.add(const Text("Latitude",
+        textAlign: TextAlign.left,
+        style: TextStyle(fontWeight: FontWeight.bold)));
+    ps.add(ListTile(leading: Text(widget.garden.latitude.toString())));
+    ps.add(const Text("Longitude",
+        textAlign: TextAlign.left,
+        style: TextStyle(fontWeight: FontWeight.bold)));
+    ps.add(ListTile(leading: Text(widget.garden.longitude.toString())));
+    ps.add(const Text("Plants",
+        textAlign: TextAlign.left,
+        style: TextStyle(fontWeight: FontWeight.bold)));
+
     for (int i = 0; i < widget.garden.plants.length; i++) {
       ps.add(ListTile(
           onTap: () {
@@ -75,8 +92,24 @@ class _GardenPageState extends State<GardenPage> {
                       gardens: widget.gardens,
                     )));
           },
-          trailing: Text(widget.plants[widget.garden.plants[i]]!.commonName)));
+          leading: Text(widget.plants[widget.garden.plants[i]]!.commonName)));
     }
+    List<Widget> images = List<Widget>.empty(growable: true);
+    for (dynamic path in widget.garden.images) {
+      images.add(Image.network(path.toString()));
+    }
+    return Scaffold(
+        appBar: AppBar(title: Text(widget.garden.title)),
+        body: Column(children: [
+          Expanded(
+              flex: 40,
+              child:
+                  ListView(scrollDirection: Axis.horizontal, children: images)),
+          Expanded(
+            flex: 60,
+            child: ListView(children: ps),
+          )
+        ]));
 
     return Scaffold(
         body: ListView(

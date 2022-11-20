@@ -61,29 +61,38 @@ class PlantsPage extends StatefulWidget {
 class _PlantPageState extends State<PlantPage> {
   @override
   Widget build(BuildContext context) {
+    List<Widget> images = List<Widget>.empty(growable: true);
+    for (dynamic path in widget.plant.images) {
+      images.add(Image.network(path.toString()));
+    }
     return Scaffold(
         appBar: AppBar(title: Text(widget.plant.commonName)),
-        body: Row(children: [
-          Column(children: const [
-            Text("Common Name",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text("Scientific Name",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text("Recipes",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-            Text("Description",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontWeight: FontWeight.bold)),
-          ]),
-          Column(children: [
-            Text(widget.plant.commonName, textAlign: TextAlign.right),
-            Text(widget.plant.scientificName, textAlign: TextAlign.right),
-            Text(widget.plant.recipes, textAlign: TextAlign.right),
-            Text(widget.plant.description, textAlign: TextAlign.right),
-          ])
+        body: Column(children: [
+          Expanded(
+              flex: 40,
+              child:
+                  ListView(scrollDirection: Axis.horizontal, children: images)),
+          Expanded(
+            flex: 60,
+            child: ListView(children: [
+              const Text("Common Name",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              ListTile(leading: Text(widget.plant.commonName)),
+              const Text("Scientific Name",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              ListTile(leading: Text(widget.plant.scientificName)),
+              const Text("Recipes",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              ListTile(leading: Text(widget.plant.recipes)),
+              const Text("Description",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              ListTile(leading: Text(widget.plant.description)),
+            ]),
+          )
         ]));
   }
 }
