@@ -81,7 +81,7 @@ class PortalState extends State<Portal> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Edible Campus Admin Portal",
+      title: "Edible Campus UNC Admin Portal",
       theme: theme,
       home: Scaffold(
           body: Column(children: [

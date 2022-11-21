@@ -49,15 +49,15 @@ class NavDrawer extends Drawer {
           leading: const Icon(Icons.home),
           title: const Text("Map"),
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => MapPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const MapPage()));
           }),
       ListTile(
           leading: const Icon(Icons.map),
           title: const Text("Website"),
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const HomePage()));
           }),
       ListTile(
           leading: const Icon(Icons.yard),
@@ -100,14 +100,16 @@ class MapPage extends StatelessWidget {
         title: "Edible Campus (m)app",
         theme: ThemeData(colorSchemeSeed: const Color(0xFF62C6F2)),
         home: Scaffold(
-          appBar: AppBar(title: Text("Map")),
+          appBar: AppBar(title: const Text("Map")),
           body: ECMap(),
-          drawer: NavDrawer(),
+          drawer: const NavDrawer(),
         ));
   }
 }
 
 class ECMap extends StatefulWidget {
+  ECMap({super.key});
+
   @override
   State<ECMap> createState() => ECMapState();
 }
@@ -118,21 +120,63 @@ class ECMapState extends State<ECMap> {
 
   @override
   Widget build(BuildContext context) {
-    Set<Marker> markers = {};
-    data.gardens.keys.forEach((bed) => markers.add(Marker(
-        markerId: MarkerId(data.gardens[bed]!.title),
-        position:
-            LatLng(data.gardens[bed]!.latitude, data.gardens[bed]!.longitude),
-        onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => data.gardenPage(bed)));
-        })));
+    List<Widget> column = [Container(), Container()];
+    column[1] = ListTile(
+            leading: Text(data.gardens["main"]!.title),
+            // title: ListTile(
+            //     leading: IconButton(
+            //   icon: const Icon(Icons.arrow_back),
+            //   onPressed: () {
+            //     column[1] = Container();
+            //   },
 
-    return Scaffold(
-        body: GoogleMap(
+            trailing: // Row(children: [
+                // Expanded(
+                //     flex: 50,
+                // child:
+                IconButton(
+              icon: const Icon(Icons.info_outline),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => data.gardenPage("main")));
+              },
+            )) // Expanded( flex: 50, child: IconButton(icon:
+        // const Icon(Icons.map), onPressed: () {})) ]))
+        ;
+
+    Set<Marker> markers = {};
+    for (var bed in data.gardens.keys) {
+      markers.add(Marker(
+          markerId: MarkerId(data.gardens[bed]!.title),
+          position:
+              LatLng(data.gardens[bed]!.latitude, data.gardens[bed]!.longitude),
+          onTap: () {
+            setState(() {
+              column[1] = ListTile(
+                leading: Text(data.gardens[bed]!.title),
+                trailing: IconButton(
+                  icon: const Icon(Icons.info_outline),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => data.gardenPage(bed)));
+                  },
+                ),
+              );
+            });
+          }));
+    }
+
+    column[0] = Expanded(
+        child: GoogleMap(
       mapType: MapType.normal,
       initialCameraPosition: _davisLibrary,
       markers: markers,
     ));
+
+    return Scaffold(body: Column(children: column));
   }
 }
