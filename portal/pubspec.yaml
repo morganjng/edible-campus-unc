@@ -1,5 +1,5 @@
-name: portal
-description: A new Flutter project.
+name: edible_campus_unc_admin_portal
+description: An intuitive portal for managing Edible Campus UNC data for non-technical users.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

@@ -1,5 +1,6 @@
 var express = require("express"),
   app = express(),
+  path = require("path"),
   morgan = require("morgan"),
   fs = require("fs");
 
@@ -18,7 +19,8 @@ app.get("/data/latest", function (req, res) {
   res.send(latest);
 });
 
-// error handling
+app.use(express.static("portal"));
+
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).send("Something bad happened!");
