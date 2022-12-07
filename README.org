@@ -1,6 +1,6 @@
 #+TITLE: Edible Campus UNC App/Server/Admin-Portal Repository
 
-This is where the work for the front-end, back-end, and admin front-end live. The original repository is at https://www.github.com/morganjng/edible-campus-unc, but I expect that this may be forked by whoever either takes this over, or by myself if I continue to work on this. If you have questions about this work (or you happen to be in charge of continuing our work in the next semester), feel free to email or text me; my email is _*morganjng@gmail.com*_ and my phone number is *(704) 307-7189.*
+This is where the work for the front-end, back-end, and admin front-end live. The original repository is at https://www.github.com/morganjng/edible-campus-unc, but I expect that this may be forked by whoever either takes this over, or by myself if I continue to work on this. If you have questions about this work (or you happen to be in charge of continuing our work in the next semester), feel free to email or text me; my email is *_morganjng@gmail.com_* and my phone number is *(704) 307-7189.*
 
 * Project layout
 ** app/
