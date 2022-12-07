@@ -109,6 +109,12 @@ class MapPage extends StatelessWidget {
 
 class ECMap extends StatefulWidget {
   ECMap({super.key});
+  Set<Marker> markers = {};
+
+  List<Widget> column = [
+    Container(),
+    Container(),
+  ];
 
   @override
   State<ECMap> createState() => ECMapState();
@@ -120,41 +126,14 @@ class ECMapState extends State<ECMap> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> column = [Container(), Container()];
-    column[1] = ListTile(
-            leading: Text(data.gardens["main"]!.title),
-            // title: ListTile(
-            //     leading: IconButton(
-            //   icon: const Icon(Icons.arrow_back),
-            //   onPressed: () {
-            //     column[1] = Container();
-            //   },
-
-            trailing: // Row(children: [
-                // Expanded(
-                //     flex: 50,
-                // child:
-                IconButton(
-              icon: const Icon(Icons.info_outline),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => data.gardenPage("main")));
-              },
-            )) // Expanded( flex: 50, child: IconButton(icon:
-        // const Icon(Icons.map), onPressed: () {})) ]))
-        ;
-
-    Set<Marker> markers = {};
     for (var bed in data.gardens.keys) {
-      markers.add(Marker(
+      widget.markers.add(Marker(
           markerId: MarkerId(data.gardens[bed]!.title),
           position:
               LatLng(data.gardens[bed]!.latitude, data.gardens[bed]!.longitude),
           onTap: () {
             setState(() {
-              column[1] = ListTile(
+              widget.column[1] = ListTile(
                 leading: Text(data.gardens[bed]!.title),
                 trailing: IconButton(
                   icon: const Icon(Icons.info_outline),
@@ -170,13 +149,13 @@ class ECMapState extends State<ECMap> {
           }));
     }
 
-    column[0] = Expanded(
+    widget.column[0] = Expanded(
         child: GoogleMap(
       mapType: MapType.normal,
       initialCameraPosition: _davisLibrary,
-      markers: markers,
+      markers: widget.markers,
     ));
 
-    return Scaffold(body: Column(children: column));
+    return Scaffold(body: Column(children: widget.column));
   }
 }
