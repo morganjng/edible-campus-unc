@@ -158,7 +158,7 @@ class _PlantPageState extends State<PlantPage> {
       Expanded(flex: 10, child: Container()),
       Expanded(
           flex: 80,
-          child: Column(children: [
+          child: ListView(children: [
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Common Name")),
             Padding(padding: const EdgeInsets.all(8.0), child: dataFields[0]),

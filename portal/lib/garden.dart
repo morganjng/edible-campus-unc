@@ -228,7 +228,7 @@ class _GardenPageState extends State<GardenPage> {
       Expanded(flex: 10, child: Container()),
       Expanded(
           flex: 80,
-          child: Column(children: [
+          child: ListView(children: [
             const Padding(padding: EdgeInsets.all(8.0), child: Text("Title")),
             Padding(padding: const EdgeInsets.all(8.0), child: dataFields[0]),
             const Padding(

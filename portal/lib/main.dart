@@ -232,7 +232,7 @@ class _AddPlantPageState extends State<AddPlantPage> {
       Expanded(flex: 10, child: Container()),
       Expanded(
           flex: 80,
-          child: Column(children: [
+          child: ListView(children: [
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Plant Common Name")),
             Padding(padding: const EdgeInsets.all(8.0), child: dataFields[0]),
@@ -350,7 +350,7 @@ class _AddGardenPageState extends State<AddGardenPage> {
       Expanded(flex: 10, child: Container()),
       Expanded(
           flex: 80,
-          child: Column(children: [
+          child: ListView(children: [
             const Padding(
                 padding: EdgeInsets.all(8.0), child: Text("Garden Title")),
             Padding(padding: const EdgeInsets.all(8.0), child: dataFields[0]),
