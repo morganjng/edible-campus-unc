@@ -16,11 +16,10 @@ This is the back-end/server/webpage for the admin portal. This is designed for C
 1) Install Visual Studio Code
 2) Copy repo from Github
 3) Open the project terminal and run
-
-“`
+```
 flutter doctor
-“`
-4)
+```
+4) Download 
 
 * Code documentation
 Code documentation can be found in the source code files (hopefully we have commented it up to whoever it may concern's standards), as well as in the READMEs of each child directory. Comments are largely omitted from locations where the code is self-explanatory.
