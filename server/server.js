@@ -19,6 +19,12 @@ app.get("/data/latest", function (req, res) {
   res.send(latest);
 });
 
+app.post("/post", (req, res) => {
+  latest = req;
+  fs.writeFileSync("data/" + Date.now() + ".json", req);
+  fs.writeFileSync("data/latest.json", latest);
+});
+
 app.use(express.static("portal"));
 
 app.use(function (err, req, res, next) {
