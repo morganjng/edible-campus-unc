@@ -18,6 +18,10 @@ Code documentation can be found in the source code files (hopefully we have comm
 * Dependencies
 Dependencies are likewise discussed further in their own directories, but this project is fairly dependency-light, and there shouldn't be too much to be wary of.
 
+* Deployment
+Unfornately due to time restrains, we were unable to deploy the projects to Carolina Cloud Apps. For instructions on how to run the app locally, please refer to our tutorial video listed on our project website.
+
+
 * License
 Go crazy
 
