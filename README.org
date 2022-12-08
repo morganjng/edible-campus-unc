@@ -14,23 +14,27 @@ This is the back-end/server/webpage for the admin portal. This is designed for C
 
 * Getting Started
 
-Prerequisites:
+** Prerequisites:
 - Visual Studio Code
-+ vscode extensions: Dart, Flutter
-1) Copy repo from Github
-2) Open the project terminal, and run:
+- vscode extensions: Dart, Flutter
+# Comment.
+
+** Running locally:
+1. Copy repo from Github
+2. Open the project terminal, and run:
 #+begin_src
 flutter doctor
 #+end_src
-
-3) Check the output carefully for other software you might need to install or further tasks to perform 
-4) Change directory to the app folder and run:
+3.Check the output carefully for other software you might need to install or further tasks to perform 
+# Comment.
+4.Change directory to the app folder and run:
 
 #+begin_src
 flutter packages get
 #+end_src
-5) Open the android emulator (refer to the set up video in our project website)
-6) Once the emulator finished loading, run this command while in app folder:
+5.Open the android emulator (refer to the set up video in our project website)
+
+6.Once the emulator finished loading, run this command while in app folder:
 #+begin_src
 flutter run
 #+end_src
